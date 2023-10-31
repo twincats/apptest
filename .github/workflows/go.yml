@@ -20,16 +20,13 @@ jobs:
     steps:
     - name: Set up Environment
       run: |
-        case "${{ runner.os }}" in
-          "Linux")
-            # Linux and macOS setup commands
-            sudo apt update
-            sudo apt install libwebkit2gtk-4.0-dev nsis
-            ;;
-          "Windows")
-            # Windows setup commands
-            ;;
-        esac
+        if [ "$RUNNER_OS" == "Linux" ]; then
+          # Linux and macOS setup commands
+          sudo apt update
+          sudo apt install libwebkit2gtk-4.0-dev nsis
+        elif [ "$RUNNER_OS" == "Windows" ]; then
+          # Windows setup commands
+        fi
 
     - uses: actions/checkout@v4
 
