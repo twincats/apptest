@@ -63,7 +63,7 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          name: apptest ${{ $VERSION }}
+          name: apptest ${{ $tag_name }}
           files: |
             apptest1023-amd64-installer.exe
           prerelease: ${{ $is_prerelease != '' }}
