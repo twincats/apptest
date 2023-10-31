@@ -22,10 +22,18 @@ jobs:
 
     - name: Set up Environment
       run: |
-        if [[ "${{ matrix.os }}" == 'ubuntu-latest' ]]; then
-          sudo apt update
-          sudo apt install libwebkit2gtk-4.0-dev nsis
-        fi
+        if [ "${{ runner.os }}" == "Linux" ]; then
+            # Linux setup commands
+            sudo apt update
+            sudo apt install libwebkit2gtk-4.0-dev
+          elif [ "${{ runner.os }}" == "Windows" ]; then
+            # Windows setup commands
+          elif [ "${{ runner.os }}" == "macOS" ]; then
+            # macOS setup commands
+          else
+            echo "Unsupported OS: ${{ runner.os }}"
+            exit 1
+          fi
 
     - name: Set up Go
       uses: actions/setup-go@v4
@@ -42,13 +50,7 @@ jobs:
 
     - name: Build for OS
       run: |
-        if [[ "${{ matrix.os }}" == 'ubuntu-latest' ]]; then
-          wails build -nsis -platform linux/amd64
-        elif [[ "${{ matrix.os }}" == 'windows-latest' ]]; then
-          wails build -nsis -platform windows/amd64
-        elif [[ "${{ matrix.os }}" == 'macOS-latest' ]]; then
-          wails build -nsis -platform darwin/universal
-        fi
+        wails build -nsis
 
     - name: Upload Artifact
       run: |
