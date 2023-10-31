@@ -25,14 +25,10 @@ jobs:
         if [ "${{ runner.os }}" == "Linux" ]; then
           # Linux setup commands
           sudo apt update
-          sudo apt install libwebkit2gtk-4.0-dev
-        elif [ "${{ runner.os }}" == "Windows" ]; then
-          # Windows setup commands
+          sudo apt install libwebkit2gtk-4.0-dev nsis
         elif [ "${{ runner.os }}" == "macOS" ]; then
           # macOS setup commands
-        else
-          echo "Unsupported OS: ${{ runner.os }}"
-          exit 1
+          # Add your macOS setup commands here
         fi
 
     - name: Set up Go
