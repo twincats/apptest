@@ -54,15 +54,19 @@ jobs:
 
       - name: Determine Tag Type
         id: determine_tag_type
-        run: echo "::set-output name=is_prerelease::$(echo ${GITHUB_REF#refs/tags/} | grep -E 'v[0-9]+\.[0-9]+\.[0-9]+-(alpha|beta|rc)\.[0-9]+')"
+        run: echo "is_prerelease=$(echo ${GITHUB_REF#refs/tags/} | grep -E 'v[0-9]+\.[0-9]+\.[0-9]+-(alpha|beta|rc)\.[0-9]+')" >> "$GITHUB_ENV"
+
+      - name: Get Tag name
+        id: get_tag_name
+        run: echo "tag_name=${GITHUB_REF/refs\/tags\//" >> "$GITHUB_ENV"
 
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          name: ${{ format('apptest {0}', env.GITHUB_REF) }}
+          name: apptest ${{ $VERSION }}
           files: |
             apptest1023-amd64-installer.exe
-          prerelease: ${{ steps.determine_tag_type.outputs.is_prerelease == '' }}
+          prerelease: ${{ $is_prerelease != '' }}
        
 permissions:
   contents: write
