@@ -20,12 +20,12 @@ jobs:
       uses: actions/setup-go@v4
       with:
         go-version: '1.21.x'
-        
+
     - name: Install pnpm
     - uses: pnpm/action-setup@v2
       with:
-          version: 8
-          
+        version: 8
+        
     - name: Install Dependencies
       run: go install github.com/wailsapp/wails/v2/cmd/wails@latest
 
