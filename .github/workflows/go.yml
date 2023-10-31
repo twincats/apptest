@@ -6,7 +6,7 @@ name: Go
 on:
   push:
     tags:
-      - "v*.*.*"
+      - 'v*.*.*.*'
 
 jobs:
 
@@ -49,16 +49,23 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Download Artifact
         uses: actions/download-artifact@v3
         with:
           name: apptest1023-amd64-installer
+
+      - name: Determine Tag Type
+        id: determine_tag_type
+        run: echo "::set-output name=is_prerelease::$(echo ${GITHUB_REF#refs/tags/} | grep -E 'v[0-9]+\.[0-9]+\.[0-9]+-(alpha|beta|rc)\.[0-9]+')"
+
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
           name: apptest ${GITHUB_REF#refs/tags/}
           files: |
             apptest1023-amd64-installer.exe
+          draft: ${{ steps.determine_tag_type.outputs.is_prerelease != '' }}
        
 permissions:
   contents: write
