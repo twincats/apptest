@@ -53,5 +53,6 @@ jobs:
           files: |
             apptest1023-amd64-installer.exe
        
-      
+permissions:
+  contents: write
    
