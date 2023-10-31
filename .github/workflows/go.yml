@@ -14,7 +14,7 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Set up Go
       uses: actions/setup-go@v4
@@ -30,7 +30,7 @@ jobs:
       run: go install github.com/wailsapp/wails/v2/cmd/wails@latest
 
     - name: Build
-      run: wails build -nsis -platform windows/arm64
+      run: wails build -nsis
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v3
@@ -38,3 +38,16 @@ jobs:
         name: apptest1023-amd64-installer
         path: build/bin  # Should match the name used in the build step
 
+  pre-release:
+    name: "Pre Release"
+    runs-on: windows-latest
+
+    steps:
+    - uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "latest"
+        prerelease: true
+        title: "Development Build"
+        files: |
+          build/bin/*.exe
