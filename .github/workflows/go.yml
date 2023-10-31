@@ -18,18 +18,20 @@ jobs:
         os: [ubuntu-latest, windows-latest, macOS-latest]
 
     steps:
-    - uses: actions/checkout@v4
-
     - name: Set up Environment
       run: |
-        if [ "${{ runner.os }}" == "Linux" ]; then
-          # Linux setup commands
-          sudo apt update
-          sudo apt install libwebkit2gtk-4.0-dev nsis
-        elif [ "${{ runner.os }}" == "macOS" ]; then
-          # macOS setup commands
-          # Add your macOS setup commands here
-        fi
+        case "${{ runner.os }}" in
+          "Linux")
+            # Linux and macOS setup commands
+            sudo apt update
+            sudo apt install libwebkit2gtk-4.0-dev nsis
+            ;;
+          "Windows")
+            # Windows setup commands
+            ;;
+        esac
+
+    - uses: actions/checkout@v4
 
     - name: Set up Go
       uses: actions/setup-go@v4
