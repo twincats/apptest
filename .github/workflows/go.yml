@@ -42,11 +42,11 @@ jobs:
 
     - name: Build for OS
       run: |
-        if [[ ${{ matrix.os }} == 'ubuntu-latest' ]]; then
+        if [[ "${{ matrix.os }}" == 'ubuntu-latest' ]]; then
           wails build -nsis -platform linux/amd64
-        elif [[ ${{ matrix.os }} == 'windows-latest' ]]; then
+        elif [[ "${{ matrix.os }}" == 'windows-latest' ]]; then
           wails build -nsis -platform windows/amd64
-        elif [[ ${{ matrix.os }} == 'macOS-latest' ]]; then
+        elif [[ "${{ matrix.os }}" == 'macOS-latest' ]]; then
           wails build -nsis -platform darwin/universal
         fi
 
