@@ -23,17 +23,17 @@ jobs:
     - name: Set up Environment
       run: |
         if [ "${{ runner.os }}" == "Linux" ]; then
-            # Linux setup commands
-            sudo apt update
-            sudo apt install libwebkit2gtk-4.0-dev
-          elif [ "${{ runner.os }}" == "Windows" ]; then
-            # Windows setup commands
-          elif [ "${{ runner.os }}" == "macOS" ]; then
-            # macOS setup commands
-          else
-            echo "Unsupported OS: ${{ runner.os }}"
-            exit 1
-          fi
+          # Linux setup commands
+          sudo apt update
+          sudo apt install libwebkit2gtk-4.0-dev
+        elif [ "${{ runner.os }}" == "Windows" ]; then
+          # Windows setup commands
+        elif [ "${{ runner.os }}" == "macOS" ]; then
+          # macOS setup commands
+        else
+          echo "Unsupported OS: ${{ runner.os }}"
+          exit 1
+        fi
 
     - name: Set up Go
       uses: actions/setup-go@v4
