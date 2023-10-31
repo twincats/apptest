@@ -1,0 +1,14 @@
+{
+  "$schema": "https://wails.io/schemas/config.v2.json",
+  "name": "apptest1023",
+  "outputfilename": "apptest1023",
+  "frontend:install": "pnpm install",
+  "frontend:build": "pnpm run build",
+  "frontend:dev:watcher": "pnpm run dev",
+  "frontend:dev:serverUrl": "auto",
+  "author": {
+    "name": "Achul Fauzi",
+    "email": "tachibana.natsuru@gmail.com"
+  },
+  "appargs": ""
+}

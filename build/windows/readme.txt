@@ -1,0 +1,1 @@
+ini readme yang seharusnya ada di nsis
