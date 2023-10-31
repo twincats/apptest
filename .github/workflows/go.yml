@@ -62,7 +62,7 @@ jobs:
           name: apptest v${{ env.GITHUB_REF }}
           files: |
             apptest1023-amd64-installer.exe
-          prerelease: ${{ steps.determine_tag_type.outputs.is_prerelease == 'true' }}
+          prerelease: ${{ steps.determine_tag_type.outputs.is_prerelease == '' }}
        
 permissions:
   contents: write
