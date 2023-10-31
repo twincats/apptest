@@ -35,7 +35,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: apptest1023-amd64-installer
-        path: apptest1023-amd64-installer.exe  # Should match the name used in the build step
+        path: build/bin/apptest1023-amd64-installer.exe  # Should match the name used in the build step
 
   release:
     needs: build
