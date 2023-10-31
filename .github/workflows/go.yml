@@ -36,5 +36,5 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: apptest1023-amd64-installer
-        path: build/bin/apptest1023-amd64-installer  # Should match the name used in the build step
+        path: /github/workspace/build/bin  # Should match the name used in the build step
 
