@@ -25,11 +25,8 @@ jobs:
         if [[ "${{ matrix.os }}" == 'ubuntu-latest' ]]; then
           sudo apt update
           sudo apt install libwebkit2gtk-4.0-dev nsis
-          # Add any other setup commands for Ubuntu
         elif [[ "${{ matrix.os }}" == 'windows-latest' ]]; then
-          # Add setup commands for Windows
         elif [[ "${{ matrix.os }}" == 'macOS-latest' ]]; then
-          # Add setup commands for macOS
         fi
 
     - name: Set up Go
