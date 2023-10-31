@@ -6,7 +6,7 @@ name: Go
 on:
   push:
     tags:
-      - 'v\d+\.\d+\.\d+(-(alpha|beta|rc)\.\d+)?'
+      - 'v*'
 
 jobs:
 
