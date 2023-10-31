@@ -59,7 +59,7 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          name: apptest v${{ env.GITHUB_REF }}
+          name: ${{ 'apptest' + env.GITHUB_REF }}
           files: |
             apptest1023-amd64-installer.exe
           prerelease: ${{ steps.determine_tag_type.outputs.is_prerelease == '' }}
