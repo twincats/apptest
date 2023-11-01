@@ -56,12 +56,11 @@ jobs:
         id: determine_tag_type
         run: echo "is_prerelease=$(echo ${GITHUB_REF#refs/tags/} | grep -E 'v[0-9]+\.[0-9]+\.[0-9]+-(alpha|beta|rc)\.[0-9]+')" >> "$GITHUB_ENV"
 
-      - name: Conventional Changelog Action
+      - name: "✏️ Generate release changelog"
         id: changelog
-        uses: TriPSs/conventional-changelog-action@v3
+        uses: heinrichreimer/action-github-changelog-generator@v2.3
         with:
-          github-token: ${{ secrets.github_token }}
-          output-file: "false"
+          token: ${{ secrets.GITHUB_TOKEN }} 
 
       - name: Release
         uses: softprops/action-gh-release@v1
@@ -70,7 +69,7 @@ jobs:
           files: |
             apptest1023-amd64-installer.exe
           prerelease: ${{ env.is_prerelease != '' }}
-          body: ${{ steps.changelog.outputs.clean_changelog }}
+          body: ${{ steps.changelog.outputs.changelog }}
        
 permissions:
   contents: write
