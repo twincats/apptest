@@ -56,11 +56,11 @@ jobs:
         id: determine_tag_type
         run: echo "is_prerelease=$(echo ${GITHUB_REF#refs/tags/} | grep -E 'v[0-9]+\.[0-9]+\.[0-9]+-(alpha|beta|rc)\.[0-9]+')" >> "$GITHUB_ENV"
 
-      - name: "✏️ Generate release changelog"
+      - name: "Generate changelog"
         id: changelog
-        uses: heinrichreimer/action-github-changelog-generator@v2.3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }} 
+        uses: mikepenz/release-changelog-builder-action@{latest-release}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Release
         uses: softprops/action-gh-release@v1
