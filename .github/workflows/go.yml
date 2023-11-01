@@ -63,6 +63,8 @@ jobs:
           configurationJson: |
             {
               "template": "#{{CHANGELOG}}\n\n<details>\n<summary>Changelog</summary>\n\n#{{UNCATEGORIZED}}\n</details>",
+              "pr_template": "- #{{TITLE}}",
+              "empty_template": "",
             }
           commitMode: true
         env:
