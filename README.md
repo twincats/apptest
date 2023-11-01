@@ -3,7 +3,9 @@
 ## About
 
 This is wails app testing github
-Add more line more more PR commit.
+Add more line more PR commit.
+
+This wails App Only intended to use for windows os only
 
 ## Building
 
